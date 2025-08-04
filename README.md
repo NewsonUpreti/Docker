@@ -1,5 +1,7 @@
 # Docker
 
+> [!WARNING] Refer project specific notes on project/Notes.md
+
 ## 1. What is docker? Why do we need it.
 
 ## 2. Docker Images and Containers.
@@ -153,13 +155,21 @@ docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest 
 ## 9. Dockerization of Node.js Application (Dockerfile).
 
 ## 10. Docker compose
+### Commands
+```bash
+docker compose -f fileName.yaml up -d # create and start containers in detach mode
+docker compose -f fileName.yaml down # shutdown and delete containers
+
+```
 > [!info] Docker compose is a tool for defining and running multi-container application.
 * we write docker compose in a .yaml(yet another markup language) file. now we run the docker containers from this file instead of the terminal
 * Easy structuring and editing/updating. 
-### a. Services.
-### b. Port Mapping.
-### c. Env Variables.
-### d. Volumes.
+#### a. Services.
+#### b. Port Mapping.
+#### c. Env Variables.
+#### d. Volumes.
+
+
 
 ## 11. Publising to DockerHub.
 

@@ -61,3 +61,29 @@ mongo
 
 Now we can access localhost:8081 to access the gui of mongodb database. 
 or we can run the server.js to get, post, etc.. to this server in this app. The server.js is local but database is running in a docker container.
+
+
+### easy setting up the above database with docker compose with singleton yaml file
+```yaml
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"  # host:container port binding
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: qwerty
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: qwerty
+      ME_CONFIG_MONGODB_URL: mongodb://admin:qwerty@mongo:27017/
+```
+**Benefits of the above** 
+* no need to explicitly create network, it automatically creates one for the serviced containers
