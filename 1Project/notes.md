@@ -2,10 +2,141 @@
 
 
 
-## What is docker? Why do we need it. 
+##  1. What is docker? Why do we need it. 
 
 
 
 
-## Docker Images and Containers.
+## 2. Docker Images and Containers.
+### **Best Example** Consider Images similar to classes, and objects similar to containers. 
 
+### About Images:
+* Id: Each images will be allocated with an ID. 
+* Tags: Simply the versions of our images. (Useful for different versions and variants of the same project basically.)
+
+* **Creating containers** : With docker image we can start creating containers. **CMD:** `docker run IMAGE_NAME`
+     - As long as we keep creating, the new instance of the containers OR New containers will be created.
+
+
+
+
+## 3. Installation of Docker cli and desktop.
+* go to [docker website](https://www.docker.com) and follow the instructions based on your computer OS and architecture. 
+* Recommended: Download lazydocker for cli centric docker usage. 
+
+
+
+
+## 4. Important Docker commands
+* Pulling docker image : `docker pull IMAGE_NAME`
+* run image: `docker run IMAGE_NAME`
+* run in interactive mode: `docker run -it IMAGE_NAME`
+* run in interactive mode, remove on exit: `docker run --rm -it IMAGE_NAME # gives terminal access basically`
+* only pull the image to local: `docker pull`
+* pull image + create container + run: `docker run`
+* list all available containers: `docker ps -a`
+* list all active/running containers: `docker ps`
+* start docker containers: `docker start CONT_NAME or CONT_ID`
+* stop docker containers: `docker stop CONT_NAME or CONT_ID`
+* remove docker image: `docker rmi IMAGE_NAME`  **NOTE: ** If there's existing container made with this image, we have to force delete, or stop and delete the containers to normally delete. 
+* remove container: `docker rm CONT_NAME` 
+
+* run container in detach mode: `docker run -d IMAGE_NAME` (default mode is attach mode)
+* specify name while running/creating a container: `docker run --name CONT_NAME -d IMAGE_NAME`
+* bind host port to container port: **EG:** `docker run -p 8080:3306 IMAGE_NAME` and whatever is necessary. **NOTE:** _Same ports can be used for containers but the host port but be one and only connected to a singleton container_
+
+### Troubleshooting Commands. 
+* `docker logs CONT_ID`
+
+**Running commands on already running containers** - basically accessing the live terminal.
+* `docker exec -it CONT_ID /bin/zsh`
+* `docker exec -it CONT_ID /bin/sh`
+**Example: ** _WE want a quick sql learning session, we can simply `docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest mysql && docker exec -it mysqltest /bin/sh` _
+
+
+* **SILLY ERROR ** running images like ubuntu, without interactive mode instantly closes it, so always is seen as exited status.
+
+
+### Pulling Images.
+* If we don't use tags, eg. `docker pull mysql`, it'll use default tag as latest version. to target tag, we use something like `docker pull mysql:8.0`
+* Even if we pull different versions of same image, some layers are same and logs as already exists if other version images exists with matching layers. 
+
+### Running Images.
+* while running images like mysql, to set the root password, etc.. we declare the env variable with `-e` prefix 
+    * Example: To run a 8.0 version mysql: `docker run --name mysql8.0 -d -e MYSQL_ROOT_PASSWORD=secret mysql:tag` , recommended to refer [mysql dockerhub](https://hub.docker.com/_/mysql) for detailed commands and information. **NOTE:** _no need to use tag for latest_
+
+*
+
+
+
+
+
+
+## 5. Docker vs VM
+
+
+
+## 6. Port Mapping & setting Env Variables
+
+## port binding
+* By default, All docker containers have port assigned to them. (independent from the host machine)
+* We can bind the host port to the container port with `-p` flag. **EG:** `docker run -p 8080:3306 IMAGE_NAME`
+
+
+
+## 7. Troubleshooting containers
+
+
+
+
+## 8. Using containers to build Node Application
+
+
+
+## 9. Dockerization of Node.js Application (Dockerfile).
+
+
+## 10. Docker compose
+    ### a. Services.
+    ### b. Port Mapping.
+    ### c. Env Variables.
+    ### d. Volumes. 
+
+
+
+
+## 11. Publising to DockerHub.
+
+
+
+## 12. Layering in Docker Images.
+
+| Layers in Docker Image |
+| ------------- |
+| container (top level: Writable layer) |
+| layer 2       |
+| layer 1 |
+|Base layer: (Linux: eg. alpine, debian)|
+
+
+**NOTE: ** All the layers are readonly/immutable layers other than the container. 
+- in this way, if we are using same image of different versions: It'll log already exists while pulling the layers. **Best Example: ** _If mysql uses ubuntu v20, then mysql:8.0 may use ubuntu v20 too, hence it logs already exists if we have either of them already._
+
+
+
+
+
+
+
+
+
+
+## 13. Volume Mounting.
+
+
+
+
+## 14. Docker Networking.
+    ### a. Default and Custom Networks. 
+    ### Using custom network for multi-container apps.
+    ### Network drivers: Bridge, Host, Null.
