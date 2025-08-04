@@ -94,11 +94,9 @@ docker logs CONT_ID
 **Running commands on already running containers** - basically accessing the live terminal.
 
 ```bash
-docker exec -it CONT_ID /bin/zsh
+docker exec -it CONT_ID /bin/sh
 ```
-- `docker exec -it CONT_ID /bin/sh`
-  **Example: ** \_WE want a quick sql learning session, we can simply
-
+  **Example: ** WE want a quick sql learning session, we can simply
 ```bash
 docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest mysql && docker exec -it mysqltest /bin/sh
 ```
@@ -119,26 +117,46 @@ docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest 
 -
 
 ## 5. Docker vs VM
+### first we need to understand the levels of a machine
+| Computer |
+| ------------- |
+| Application layer: All applications runs here|
+| Host OS : Kernel|
+| Hardware: Base |
+
+
+
+ | Docker   | Virtual machine    |
+ |--------------- | --------------- |
+ | virtualization on the application layer | Virtualizes in the Application layer and Host OS / Kernel level.             |
+ | Easy setting up and getting started   | comparatively harder setting up.    |
+ | Less overhead: lighter and faster   | More overhead: Heavier and slower, but necessary in many cases.   |
+ |highly aligned towards linux    | Platform independent as it runs on it's own kernel   |
+
+
+ 
 
 ## 6. Port Mapping & setting Env Variables
 
-## port binding
+### port binding
 
 - By default, All docker containers have port assigned to them. (independent from the host machine)
 - We can bind the host port to the container port with `-p` flag. **EG:** `docker run -p 8080:3306 IMAGE_NAME`
 
 ## 7. Troubleshooting containers
+> [!info] Refer commands
 
-## 8. Using containers to build Node Application
+
+
+## 8. Developing with Docker: Using containers to build Node Application
 
 ## 9. Dockerization of Node.js Application (Dockerfile).
 
 ## 10. Docker compose
-
-    ### a. Services.
-    ### b. Port Mapping.
-    ### c. Env Variables.
-    ### d. Volumes.
+### a. Services.
+### b. Port Mapping.
+### c. Env Variables.
+### d. Volumes.
 
 ## 11. Publising to DockerHub.
 
@@ -153,12 +171,11 @@ docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest 
 
 **NOTE: ** All the layers are readonly/immutable layers other than the container.
 
-- in this way, if we are using same image of different versions: It'll log already exists while pulling the layers. **Best Example: ** _If mysql uses ubuntu v20, then mysql:8.0 may use ubuntu v20 too, hence it logs already exists if we have either of them already._
+ in this way, if we are using same image of different versions: It'll log already exists while pulling the layers. **Best Example: ** _If mysql uses ubuntu v20, then mysql:8.0 may use ubuntu v20 too, hence it logs already exists if we have either of them already._
 
 ## 13. Volume Mounting.
 
 ## 14. Docker Networking.
-
-    ### a. Default and Custom Networks.
-    ### Using custom network for multi-container apps.
-    ### Network drivers: Bridge, Host, Null.
+### a. Default and Custom Networks.
+### Using custom network for multi-container apps.
+### Network drivers: Bridge, Host, Null.
