@@ -128,9 +128,9 @@ docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest 
 
  | Docker   | Virtual machine    |
  |--------------- | --------------- |
- | virtualization on the application layer | Virtualizes in the Application layer and Host OS / Kernel level.             |
+ | virtualization on the application layer | Virtualizes in the Application layer and Host OS / Kernel level.|
  | Easy setting up and getting started   | comparatively harder setting up.    |
- | Less overhead: lighter and faster   | More overhead: Heavier and slower, but necessary in many cases.   |
+ | Less overhead: lighter and faster   | More overhead: Heavier and slower, but necessary in many cases.|
  |highly aligned towards linux    | Platform independent as it runs on it's own kernel   |
 
 
@@ -153,6 +153,9 @@ docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest 
 ## 9. Dockerization of Node.js Application (Dockerfile).
 
 ## 10. Docker compose
+> [!info] Docker compose is a tool for defining and running multi-container application.
+* we write docker compose in a .yaml(yet another markup language) file. now we run the docker containers from this file instead of the terminal
+* Easy structuring and editing/updating. 
 ### a. Services.
 ### b. Port Mapping.
 ### c. Env Variables.
@@ -171,13 +174,23 @@ docker pull mysql && docker run -d -e MYSQL_ROOT_PASSWORD=root --name mysqltest 
 
 **NOTE: ** All the layers are readonly/immutable layers other than the container.
 
- in this way, if we are using same image of different versions: It'll log already exists while pulling the layers. **Best Example: ** _If mysql uses ubuntu v20, then mysql:8.0 may use ubuntu v20 too, hence it logs already exists if we have either of them already._
+ in this way, if we are using same image of different versions: It'll log already exists while pulling the layers. 
+ > [!info] **Best Example: ** _If mysql uses ubuntu v20, then mysql:8.0 may use ubuntu v20 too, hence it logs already exists if we have either of them already._
+
 
 ## 13. Volume Mounting.
 
 ## 14. Docker Networking.
+* Docker have the ability to create such isolated networks which makes the containers within that network communicate with each other without needing localhost or any kind of port.
 ### a. Default and Custom Networks.
 ### Using custom network for multi-container apps.
 ### Network drivers: Bridge, Host, Null.
+
+### Commands
+```bash
+docker network ls # list all available networks, or see network tab in lazydocker.
+docker network create NETWORK_NAME
+```
+
 
 
