@@ -1,6 +1,6 @@
 # Docker
 
-> [!WARNING] Refer project specific notes on project/Notes.md
+**Refer project specific notes on project/Notes.md** 
 
 ## 1. What is docker? Why do we need it.
 

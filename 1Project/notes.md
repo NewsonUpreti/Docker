@@ -4,13 +4,13 @@
 | Files on duty |
 | ------------- |
 | Server.js |
-| Html and css|
+| public/ Html and css|
 
 
 
 | Requirements |
 | ------------- |
-| Mongo|
+| Mongo (database)|
 | Mongo express (interface for the database) |
 
 
@@ -86,4 +86,10 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://admin:qwerty@mongo:27017/
 ```
 **Benefits of the above** 
-* no need to explicitly create network, it automatically creates one for the serviced containers
+* No need to explicitly create network, it automatically creates one for the serviced containers
+* Starting the server with above yaml file. 
+  * cd this project.
+  ```bash
+  docker compose -f mongodb.yaml up -d # that's it
+  ```
+
